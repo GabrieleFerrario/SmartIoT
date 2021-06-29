@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<meta http-equiv="refresh" content="2">
+  </head>
+   <body>
+      <h1 align="center">Home Monitoring</h1>
+      <table align="center" class="mdl-data-table mdl-js-data-table mdl-shadow--4dp" id="table">
+			<thead>
+			  <tr>
+				<th>
+				{% if check_temp >0 %}
+					<font color="red">
+				{% else %}
+					<font color="black">
+				{% endif %}
+				Temperature</th>
+				<th><font color="black">Humidity</th>
+				<th>
+				{% if check_light > 0 %}
+					<font color="red">
+				{% else %}
+					<font color="black">
+				{% endif %}
+				Light</th>
+				<th>
+				{% if check_wifi > 0 %}
+					<font color="red">
+				{% else %}
+					<font color="black">
+				{% endif %}
+				Wi-Fi</th>
+				
+				{% if check_tilt > 0 %}
+					<th><font color="red">
+				{% else %}
+					<th><font color="black">
+				{% endif %}
+				Tilt</th>
+			  </tr>
+			</thead>
+			<tr>
+				<td id=temperature>{{temperature}} &#8451;</td>
+				<td id=humidity>{{humidity}} %</td>
+				<td id=light>{{light}}</td>
+				<td id=wifi>{{wifi}}</td>
+				<td id=tilt>{{tilt}}</td>
+			</tr>
+		</table>
+		<div align="center" style="margin-bottom: 25px; margin-top: 20px;">
+			
+			{% if check_temp >0 or check_light > 0 or check_tilt > 0 or check_wifi > 0%}
+				<image id="alarm" src="https://icons.iconarchive.com/icons/gakuseisean/ivista-2/128/Alarm-Error-icon.png" height="100" width="100"/>
+			{% elif check_temp == 0 and check_light == 0 and check_tilt == 0 and check_wifi == 0 and temperature!=""%}
+				<image id="alarm" src="https://icons.iconarchive.com/icons/gakuseisean/ivista-2/128/Alarm-Tick-icon.png" height="100" width="100"/>				
+			{% endif %}
+			
+		</div>
+		<div align="center">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="window.location.href='{{ url_for('index') }}';">
+				Home page
+			</button>
+		</div>
+		{% if temperature != "" %}
+			<br>
+			<div align="center">
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="window.location.href='{{ url_for('resetHome') }}';">
+					Stop
+				</button>
+			</div>
+		{% endif %}
+	</body>
+</html>

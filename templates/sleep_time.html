@@ -1,0 +1,39 @@
+<html>
+	<head>
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+		
+	</head>
+	<body>
+		<h2 align="center">Monitoring Dashboard</h2>
+		<form action="{{ url_for("sleeptime")}}" method="post">
+		<div align="center">
+			<br>
+			<h5> Sleep Time: <h5>
+			<div class="mdl-textfield mdl-js-textfield">
+				{% if time == "" %}
+					<input class="mdl-textfield__input" type="text" id="sleeptime" name="time" placeholder="insert sleep time" required min="0">
+				{% else %}
+					<input class="mdl-textfield__input" type="text" id="sleeptime" name="time" placeholder="current value {{time}}" required min="0">
+				{% endif %}
+			</div>
+		</div>
+		<div align="center">
+			<h5> Execution Time: <h5>
+			<div class="mdl-textfield mdl-js-textfield">
+				{% if extime == "" %}
+					<input class="mdl-textfield__input" type="text" id="executiontime" name="extime" placeholder="insert execution time" required min="0">
+				{% else %}
+					<input class="mdl-textfield__input" type="text" id="executiontime" name="extime" placeholder="current value {{extime}}" required min="0">
+				{% endif %}
+			</div>
+		</div>
+		<div align="center">
+			<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+				Confirm
+			</button>
+		</div>
+	</body>
+</html>

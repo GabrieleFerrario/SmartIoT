@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<meta http-equiv="refresh" content="2">
+  </head>
+   <body>
+   <h3 align="center">Weather Forecasting</h3>
+    <table align="center" class="mdl-data-table mdl-js-data-table mdl-shadow--4dp" id="table">
+            <thead>
+                <tr>
+                    {% for header in  headings %}
+                        <th>{{ header }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            {% for row in data %}
+        <tr>
+            {% for elem in  row %}
+                {% if elem is string %}
+                    {% if 'rain' in elem %}
+                        <td><image src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-showers-scattered-icon.png" height="40" width="40"/></td>
+                    {% elif 'sky' in elem %}
+                        <td><image src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-clear-icon.png" height="40" width="40"/></td>
+                    {% elif 'cloud' in elem %}
+                        <td><image src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-many-clouds-icon.png" height="40" width="40"/></td>
+                    {% elif 'snow' in elem %}
+                        <td><image src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-snow-scattered-icon.png" height="40" width="40"/></td>
+                    {% elif 'thunderstorm' in elem %}
+                        <td><image src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-storm-day-icon.png" height="40" width="40"/></td>
+                    {%elif 'mist' in elem %}
+                        <td><image src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Status-weather-few-clouds-icon.png" height="40" width="40"/></td>
+                    {% else %}
+                        <td>{{ elem }}</td>
+                    {% endif %}
+                {% else %}
+                    <td>{{ elem }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+		<br>
+		<div align="center">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="window.location.href='{{ url_for('index') }}';">
+				Home page
+			</button>
+		</div>
+	</body>
+</html>

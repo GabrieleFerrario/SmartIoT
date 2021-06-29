@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	</head>
+	<h2 align="center">Event Detection</h2>
+	<form action="{{ url_for("alerts")}}" method="post">
+	<div align="center">
+	
+		<h5> Temperature <h5>
+		<div class="mdl-textfield mdl-js-textfield">
+			<input class="mdl-textfield__input" type="number" id="minTemperature" name="minTemp" placeholder="insert lowest temperature" required min="-20" max="40">
+			<input class="mdl-textfield__input" type="number" id="maxTemperature" name="maxTemp" placeholder="insert highest temperature" required min="-20" max="40">
+		</div>
+		
+		<h5>Light</h5>
+		<div class="mdl-textfield mdl-js-textfield">
+			<input class="mdl-textfield__input" type="number" id="minLight" name="minL" placeholder="insert lowest light" required min="0" max="1024">
+			<input class="mdl-textfield__input" type="number" id="maxLight" name="maxL" placeholder="insert highest light" required min="0" max="1024">
+		</div>
+		<h5>WiFi strength</h5>
+		<div class="mdl-textfield mdl-js-textfield">
+			<input class="mdl-textfield__input" type="number" id="minWifi" name="minW" placeholder="insert lowest strength" required min="-80" max="0">
+		</div>
+	</div>
+	<div align="center">
+		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+			Confirm
+		</button>
+	</div>
+</html>
